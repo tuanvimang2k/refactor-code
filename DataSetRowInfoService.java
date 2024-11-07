@@ -40,7 +40,7 @@ public class DataSetRowInfoService extends BaseService {
       if (mDataSetRowInfo == null) {
         continue;
       }
-
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
       boolean hasWebConnector = false;
       for (MDataSetRowCreateRule rule : mDataSet.getMDataSetRowCreateRuleList()) {
         if (rule.getTargetDataSource().hasSite()) {
@@ -63,7 +63,7 @@ public class DataSetRowInfoService extends BaseService {
 
       List<DataSetRowInfoDto.ColumnDto> columnDtoList = new ArrayList<>();
       for (ColumnDto columnDto : mDataSetRowInfo.getHeaderMeta().getColumns()) {
-
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
         if (WEB_CONNECTOR_PHYSICAL_NAME_LIST.contains(columnDto.getPhysicalName())) {
           if (hasWebConnector) {
             columnDtoList.add(new DataSetRowInfoDto.ColumnDto(columnDto));
@@ -75,7 +75,7 @@ public class DataSetRowInfoService extends BaseService {
         //     return WEB_CONNECTOR_PHYSICAL_NAME_LIST.contains(columnDto.getPhysicalName()) && hasWebConnector;
         // }
         
-
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
         Long dataSourceId = 0L;
         try {
           dataSourceId = Long.valueOf(columnDto.getPhysicalName().split("_")[0]);
@@ -95,6 +95,7 @@ public class DataSetRowInfoService extends BaseService {
 
         MDataSource mDataSource = mDataSourceDao.findByIdWithRelation(contractCompanyId,
             dataSourceId);
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
         if (mDataSource == null) {
           continue;
         }
